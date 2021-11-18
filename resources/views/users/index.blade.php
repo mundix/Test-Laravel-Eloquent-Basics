@@ -10,6 +10,7 @@
         <tr>
             <td>{{ $loop->iteration }}. {{ $user->name }}</td>
             <td>{{ $user->email }}</td>
+            <td>{{ $user->email_verified_at }}</td>
         </tr>
     @endforeach
     </tbody>

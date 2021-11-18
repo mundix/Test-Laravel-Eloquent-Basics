@@ -22,28 +22,29 @@ class EloquentTest extends TestCase
         $this->assertDatabaseHas('morning_news', $article);
     }
 
-    // TASK: Write Eloquent query to return the newest 3 verified users
-    // public function test_get_filtered_list()
-    // {
-    //     $user1 = User::factory()->create(['created_at' => now()->subMinutes(5)]);
-    //     $user2 = User::factory()->create(['created_at' => now()->subMinutes(4)]);
-    //     $user3 = User::factory()->create(['created_at' => now()->subMinutes(3), 'email_verified_at' => NULL]);
-    //     $user4 = User::factory()->create(['created_at' => now()->subMinutes(2)]);
-    //     $user5 = User::factory()->create(['created_at' => now()->subMinute()]);
+//     TASK: Write Eloquent query to return the newest 3 verified users
+     public function test_get_filtered_list()
+     {
+         $user1 = User::factory()->create(['created_at' => now()->subMinutes(5)]);
+         $user2 = User::factory()->create(['created_at' => now()->subMinutes(4)]);
+         $user3 = User::factory()->create(['created_at' => now()->subMinutes(3), 'email_verified_at' => NULL]);
+         $user4 = User::factory()->create(['created_at' => now()->subMinutes(2)]);
+         $user5 = User::factory()->create(['created_at' => now()->subMinute()]);
 
-    //     $response = $this->get('users');
+         $response = $this->get('users');
 
-    //     // This one should be filtered by "email_verified_at is not null"
-    //     $response->assertDontSee($user3->name);
+         // This one should be filtered by "email_verified_at is not null"
+         $response->assertDontSee($user3->email_verified_at);
 
-    //     // This one should be filtered out by "limit 3"
-    //     $response->assertDontSee($user1->name);
+         // This one should be filtered out by "limit 3"
+         $response->assertDontSee($user1->name);
 
-    //     // Do we have the correct order?
-    //     $response->assertSee('1. ' . $user5->name);
-    //     $response->assertSee('2. ' . $user4->name);
-    //     $response->assertSee('3. ' . $user2->name); // not $user3
-    // }
+//         // Do we have the correct order?
+
+         $response->assertSee('1. ' . $user5->name);
+         $response->assertSee('2. ' . $user4->name);
+         $response->assertSee('3. ' . $user2->name); // not $user3
+     }
 
     // public function test_find_user_or_show_404_page()
     // {
