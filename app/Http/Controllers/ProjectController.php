@@ -37,7 +37,7 @@ class ProjectController extends Controller
 
     public function destroy($projectId)
     {
-        Project::destroy($projectId);
+        Project::forceDelete($projectId);
 
         // TASK: change this Eloquent statement to include the soft-deletes records
         $projects = Project::all();
