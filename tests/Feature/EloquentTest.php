@@ -110,17 +110,16 @@ class EloquentTest extends TestCase
          ]);
      }
 
-    // public function test_mass_delete_users()
-    // {
-    //     User::factory(4)->create();
-    //     $this->assertDatabaseCount('users', 4);
-
-    //     $response = $this->delete('users', [
-    //         'users' => [1, 2, 3]
-    //     ]);
-    //     $response->assertRedirect();
-    //     $this->assertDatabaseCount('users', 1);
-    // }
+     public function test_mass_delete_users()
+     {
+         User::factory(4)->create();
+         $this->assertDatabaseCount('users', 4);
+         $response = $this->delete('users', [
+             'users' => [1, 2, 3]
+         ]);
+         $response->assertRedirect();
+         $this->assertDatabaseCount('users', 1);
+     }
 
     // public function test_soft_delete_projects()
     // {
