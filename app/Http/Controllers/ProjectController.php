@@ -24,6 +24,11 @@ class ProjectController extends Controller
         // update projects
         //   set name = $request->new_name
         //   where name = $request->old_name
+        $project = Project::where('name', $request->old_name)->first();
+        if($project) {
+            $project->name = $request->new_name;
+            $project->save();
+        }
 
         // Insert Eloquent statement below
 
