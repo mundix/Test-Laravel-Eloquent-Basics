@@ -46,16 +46,16 @@ class EloquentTest extends TestCase
          $response->assertSee('3. ' . $user2->name); // not $user3
      }
 
-    // public function test_find_user_or_show_404_page()
-    // {
-    //     $response = $this->get('users/1');
-    //     $response->assertStatus(404);
-
-    //     $user = User::factory()->create();
-    //     $response = $this->get('users/1');
-    //     $response->assertStatus(200);
-    //     $response->assertViewHas('user', $user);
-    // }
+     public function test_find_user_or_show_404_page()
+     {
+         $response = $this->get('users/1');
+         $response->assertStatus(404);
+//
+         $user = User::factory()->create();
+         $response = $this->get('users/1');
+         $response->assertStatus(200);
+         $response->assertViewHas('user', $user);
+     }
 
     // public function test_check_or_create_user()
     // {
